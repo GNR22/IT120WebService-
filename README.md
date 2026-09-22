@@ -41,3 +41,7 @@ The server provides the following endpoints:
 
 - **`GET /students`**: Retrieve a list of all students.
 - **`GET /students/<id>`**: Retrieve information for a specific student by their ID. Returns a `404` status code if the student is not found.
+
+# Take Note
+ **Only change the code logic look for "MODIFY HERE" and "DO NOT TOUCH BELOW"**
+ **Just copy & paste the client side and server side code logic**
