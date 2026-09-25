@@ -46,5 +46,27 @@ def update_student(student_id):
             
     return jsonify({"message": f"Student {student_id} updated successfully.", "student": student}), 200
 
+# Endpoint 4: Add a new student (POST)
+@app.route('/students', methods=['POST'])
+def add_student():
+    data = request.get_json()
+    new_student = {
+        "id": len(students) + 1 if students else 1,
+        "name": data["name"],
+        "course": data["course"],
+        "year": int(data["year"])
+    }
+    students.append(new_student)
+    return jsonify(new_student), 201
+
+# Endpoint 5: Delete a student (DELETE)
+@app.route('/students/<int:student_id>', methods=['DELETE'])
+def delete_student(student_id):
+    student = find_student(student_id)
+    if not student:
+        return jsonify({"error": "Student not found"}), 404
+    students.remove(student)
+    return jsonify({"message": "Student deleted successfully"}), 200
+
 if __name__ == '__main__':
     app.run(debug=True, port=5000)
